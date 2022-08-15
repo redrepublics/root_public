@@ -12,4 +12,9 @@ FILENAME — внесет в индекс и создаст коммит на о
 git push - публикация изменений на сервере
 git log - история изменений
 git rm fulename.filetype - удаляет файл из под версионного контроля
--
+git branch --list -список веток в локальном репозитории
+git branch --list -v -список последних коммитов в ветках
+git checkout testbranch00 - переход в ветку testbranch00
+git checkout - переместит на шаг назад (можно будет работать с предыдущей версией файла)
+git branch testbranch00 - создаем ветку testbranch00
+Тест
