@@ -1,4 +1,4 @@
-git clone https://github.com/redrepublics/root_public
+﻿git clone https://github.com/redrepublics/root_public
 git status - проверка статуса в репозитории
 git add . - под версионный контроль (точка отдельно)
 git commit - фиксация изменений 
@@ -18,3 +18,4 @@ git checkout testbranch00 - переход в ветку testbranch00
 git checkout - переместит на шаг назад (можно будет работать с предыдущей версией файла)
 git branch testbranch00 - создаем ветку testbranch00
 Тест
+Test2
