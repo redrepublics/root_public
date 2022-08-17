@@ -17,5 +17,7 @@ git branch --list -v -список последних коммитов в вет
 git checkout testbranch00 - переход в ветку testbranch00
 git checkout - переместит на шаг назад (можно будет работать с предыдущей версией файла)
 git branch testbranch00 - создаем ветку testbranch00
-Тест
-Test2
+git push --set-upstream origin testbranch01 - публикация в ветку
+git merge - с указанием ветви, мерджим
+2
+3
