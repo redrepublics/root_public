@@ -20,3 +20,8 @@ git branch testbranch00 - создаем ветку testbranch00
 git push --set-upstream origin testbranch01 - публикация в ветку
 git merge - с указанием ветви, мерджим
 git pull - получение файлов с удаленного репозитория
+
+git stash - прятать изменениня
+git stash save "Какое-нибудь сообщение" - для понимания, зачем спрятали
+git stash list - список спрятанного
+git stash apply stash@{1} - восстанавливаем
