@@ -1,0 +1,5 @@
+Делается из папки андроид платформ тулса. 
+./adb logcat -c  - чистит кэш
+./adb logcat -d -v time >./log.txt - запись лога
+./adb devices - смотреть девайсы
+./adb -s emulator-5554 logcat - выводить логи в консоль

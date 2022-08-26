@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "f5bf6869-a9ba-4e15-b5af-48bfe9e6845c",
+		"name": "PetFriend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19415962"
+	},
+	"item": [
+		{
+			"name": "/api/key",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "email",
+						"value": "mailo4@mail.ru",
+						"type": "text"
+					},
+					{
+						"key": "password",
+						"value": "daorliar",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://petfriends.skillfactory.ru/api/key",
+					"protocol": "https",
+					"host": [
+						"petfriends",
+						"skillfactory",
+						"ru"
+					],
+					"path": [
+						"api",
+						"key"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create_pet_simple",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth_key",
+						"value": "a98adb702ee0d69b617573022e5077882aaf84aff129cb6376db68ef",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Миша",
+							"type": "text"
+						},
+						{
+							"key": "animal_type",
+							"value": "alligator",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "23",
+							"type": "text"
+						},
+						{
+							"key": "pet_photo",
+							"type": "file",
+							"src": "/C:/Users/Zver/Downloads/1552937621719-happygator.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/create_pet_simple",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"create_pet_simple"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pets?filter=my_pets",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "auth_key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "a98adb702ee0d69b617573022e5077882aaf84aff129cb6376db68ef",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/pets?filter=my_pets",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pets"
+					],
+					"query": [
+						{
+							"key": "filter",
+							"value": "my_pets"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pets/:pet_id",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "auth_key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "a98adb702ee0d69b617573022e5077882aaf84aff129cb6376db68ef",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "8",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Гена",
+							"type": "text"
+						},
+						{
+							"key": "animal_type",
+							"value": "Крокодил",
+							"type": "text"
+						},
+						{
+							"key": "pet_photo",
+							"type": "file",
+							"src": "/C:/Users/Zver/Downloads/1552937621719-happygator.jpg",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/api/pets/:pet_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						":pet_id"
+					],
+					"variable": [
+						{
+							"key": "pet_id",
+							"value": "abaf5cfc-6027-46fb-aad3-71dcb4f8e768"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "pets delete ID",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "auth_key",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "a98adb702ee0d69b617573022e5077882aaf84aff129cb6376db68ef",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/api/pets/:pet_id",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"api",
+						"pets",
+						":pet_id"
+					],
+					"variable": [
+						{
+							"key": "pet_id",
+							"value": "abaf5cfc-6027-46fb-aad3-71dcb4f8e768"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://petfriends.skillfactory.ru",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,381 @@
+{
+	"info": {
+		"_postman_id": "59badfe8-8dc9-442e-9860-83b46eeccd8f",
+		"name": "PetStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19415962"
+	},
+	"item": [
+		{
+			"name": "/user/createWithArray",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n  {\r\n    \"id\": 0,\r\n    \"username\": \"{{name_1}}\",\r\n    \"firstName\": \"David\",\r\n    \"lastName\": \"Dav\",\r\n    \"email\": \"david@my.com\",\r\n    \"password\": \"12345\",\r\n    \"phone\": \"1111\",\r\n    \"userStatus\": 0\r\n  },\r\n    {\r\n    \"id\": 0,\r\n    \"username\": \"{{name_2}}\",\r\n    \"firstName\": \"Goliaf\",\r\n    \"lastName\": \"Goliaf2\",\r\n    \"email\": \"goliaf@my.com\",\r\n    \"password\": \"67890\",\r\n    \"phone\": \"2222\",\r\n    \"userStatus\": 0\r\n  }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/createWithArray",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"createWithArray"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "name_1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//узнаем номер телефона и сохраняем\r",
+							"pm.test(\"Сохраненяем номер телефона\", function () {\r",
+							"    var jsonData = JSON.parse(responseBody)\r",
+							"    pm.collectionVariables.set(\"phone_1\", jsonData.phone)\r",
+							"});\r",
+							"//проверка, есть ли name_1 в ответе\r",
+							"pm.test(\"В теле ответа содержится name_1\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(pm.collectionVariables.get(\"name_1\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/{{name_1}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"{{name_1}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "name_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//узнаем номер телефона и сохраняем\r",
+							"pm.test(\"Сохраненяем номер телефона\", function () {\r",
+							"    var jsonData = JSON.parse(responseBody)\r",
+							"    pm.collectionVariables.set(\"phone_2\", jsonData.phone)\r",
+							"});\r",
+							"//имя первого пользователя НЕ записалось в объект со вторым пользователем\r",
+							"pm.test(\"В теле ответа не содержится name_1\", function () {\r",
+							"    pm.expect(pm.response.text()).to.not.include(pm.collectionVariables.get(\"name_1\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/{{name_2}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"{{name_2}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.variables.set(\"phone_3\", 456);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"//Сохраняем user_3\r",
+							"pm.test(\"Сохраняем id user_3 в переменную user_id\", function () {\r",
+							"    var jsonData = JSON.parse(responseBody)\r",
+							"    pm.collectionVariables.set(\"user_id\", jsonData.message)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"username\": \"Mod\",\r\n  \"firstName\": \"{{name_1}}\",\r\n  \"lastName\": \"{{name_2}}\",\r\n  \"email\": \"sidor@my.com\",\r\n  \"password\": \"987654\",\r\n  \"phone\": \"{{phone_3}}\",\r\n  \"userStatus\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "name_3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Сохранение имени User 3 в переменную name_3\", function () {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.collectionVariables.set(\"name_3\", jsonData.username);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Id User 3 содержится в ответе от сервера\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(pm.collectionVariables.get(\"user_id\"));\r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/Mod",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"Mod"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"username\": \"{{name_4}}\",\r\n  \"firstName\": \"Sidor\",\r\n  \"lastName\": \"Sidorov\",\r\n  \"email\": \"nomail@my.com\",\r\n  \"password\": \"12345\",\r\n  \"phone\": \"88888\",\r\n  \"userStatus\": 0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/user/:id",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4808723242037563326"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/ (new)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Сохранение имени User 3 в переменную name_3\", function () {\r",
+							"    var jsonData = JSON.parse(responseBody);\r",
+							"    pm.collectionVariables.set(\"name_3\", jsonData.username);\r",
+							"    });\r",
+							"\r",
+							"    pm.test(\"Id User 3 содержится в ответе от сервера\", function () {\r",
+							"    pm.expect(pm.response.text()).to.not.include(pm.collectionVariables.get(\"user_id\"));\r",
+							"    });"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/user/Mod",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"user",
+						"Mod"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://petstore.swagger.io/v2",
+			"type": "string"
+		},
+		{
+			"key": "name_1",
+			"value": "Don",
+			"type": "string"
+		},
+		{
+			"key": "name_2",
+			"value": "Nod",
+			"type": "string"
+		},
+		{
+			"key": "name_3",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "phone_1",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "phone_2",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "phone_3",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "user_id",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "3ac4dd8a-f0fd-40a3-a5b1-9fc49717d0de",
+		"name": "POST-запросы Дом питомца",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19415962"
+	},
+	"item": [
+		{
+			"name": "/login?email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Session token exist\", function () {\r",
+							"    pm.expect(pm.cookies.has(\"Session\")).to.be.true;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://petfriends.skillfactory.ru/login?email=sestli4ka@yande.ru&pass=daorliar",
+					"protocol": "https",
+					"host": [
+						"petfriends",
+						"skillfactory",
+						"ru"
+					],
+					"path": [
+						"login"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "sestli4ka@yande.ru"
+						},
+						{
+							"key": "pass",
+							"value": "daorliar"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/pets",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept-Language",
+						"value": "ru-RU,ru;q=0.9,en-US;q=0.8,en;q=0.7",
+						"type": "text"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Везьзевул",
+							"type": "text"
+						},
+						{
+							"key": "animal_type",
+							"value": "Ангел",
+							"type": "text"
+						},
+						{
+							"key": "age",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "pet_photo",
+							"type": "file",
+							"src": "/C:/Users/Zver/Desktop/домик/4235.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://petfriends.skillfactory.ru/api/pets",
+					"protocol": "https",
+					"host": [
+						"petfriends",
+						"skillfactory",
+						"ru"
+					],
+					"path": [
+						"api",
+						"pets"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "serverIP2",
+			"value": "petfriends.skillfactory.ru",
+			"type": "string"
+		}
+	]
+}
